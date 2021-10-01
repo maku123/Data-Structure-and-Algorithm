@@ -32,10 +32,25 @@ void sieve(int n){
         }
     }
 }
-
+// function to calculate the number of co-primes of number N in range 1 to N (inclusive)
+int phi(int N) {
+    int result = N;
+    for (int i = 2; i * i <= N; i++) {
+        if (N % i == 0) {
+            while (N % i == 0)
+                N /= i;
+            result -= result / i;
+        }
+    }
+    if (N > 1)
+        result -= result / N;
+    return result;
+}
 ////////////////////////////////////////////////////////////////////
 void solve(){
     sieve(100);
+    cout << phi(100) << "\n";
+    
     for(auto x:prime)cout<<x<<endl;
 }
 int32_t main(){
